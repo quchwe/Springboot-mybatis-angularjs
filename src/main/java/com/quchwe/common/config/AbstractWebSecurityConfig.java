@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
+/**l
  * spring-security配置
  *
  * @author zhangxd
@@ -41,8 +41,8 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(this.userDetailsService)
-            .passwordEncoder(this.passwordEncoder())
+                .userDetailsService(this.userDetailsService)
+                .passwordEncoder(this.passwordEncoder())
         ;
     }
 
@@ -65,19 +65,19 @@ public class AbstractWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity security) throws Exception {
         security
-            .csrf().disable()
-            .exceptionHandling().authenticationEntryPoint(new MyAuthenticationEntryPoint()).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests()
-            .anyRequest().authenticated();
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(new MyAuthenticationEntryPoint()).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests()
+                .anyRequest().authenticated();
 
         // Custom JWT based com.quchwe.security filter
         security
-            .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
     }
 
     public static void main(String[] args) {
         PasswordEncoder encoder = new BCryptPasswordEncoder(8);
-        System.out.println( encoder.encode("admin"));
+        System.out.println(encoder.encode("admin"));
     }
 }
