@@ -66,7 +66,7 @@ public class SysMenuController extends BaseController {
 
     /**
      * Gets menu list.
-     *
+     * testtttttttt
      * @return the menu list
      */
     @PreAuthorize("hasAuthority('sys:menu:view')")
